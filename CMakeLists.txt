@@ -26,6 +26,7 @@ add_subdirectory(
 ####################################################################
 add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/main.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/mandel.c
 )
 add_executable(main_binary ALIAS ${PROJECT_NAME})
 
