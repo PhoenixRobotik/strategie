@@ -7,4 +7,5 @@ cmake_install.cmake
 
 ## Les fichiers compilés
 *.a
-strategie
+*.hex
+PhoenixStrategie

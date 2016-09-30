@@ -16,11 +16,6 @@ set     (PhoenixStrategie_VERSION_MINOR 1)
 # "Double syntax" nécessaire pour les projets en-dehors de ce dossier
 # La source est à l'extérieur de ce dossier, mais la compilation s'effectue ici.
 # EXCLUDE_FROM_ALL : ne pas compiler les targets des sous-projets par défaut
-# add_subdirectory(
-#     ${CMAKE_CURRENT_SOURCE_DIR}/../librairie
-#     ${CMAKE_CURRENT_BINARY_DIR}/librairie
-#     EXCLUDE_FROM_ALL)
-
 add_subdirectory(
     ${CMAKE_CURRENT_SOURCE_DIR}/../cartographie
     ${CMAKE_CURRENT_BINARY_DIR}/cartographie
@@ -29,22 +24,19 @@ add_subdirectory(
 ####################################################################
 #   Source
 ####################################################################
-
-set(STRATEGIE_SRC
+add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/main.c
 )
+add_executable(main_binary ALIAS ${PROJECT_NAME})
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/
-    # $<TARGET_PROPERTY:la_super_librairieLib,INTERFACE_INCLUDE_DIRECTORIES>
-    $<TARGET_PROPERTY:cartographieLib,INTERFACE_INCLUDE_DIRECTORIES>
+    $<TARGET_PROPERTY:PhoenixCartographieLib,INTERFACE_INCLUDE_DIRECTORIES>
 )
 
-add_executable(strategie
-    ${STRATEGIE_SRC}
-)
 
-target_link_libraries(strategie
+target_link_libraries(${PROJECT_NAME}
     # la_super_librairieLib
-    cartographieLib
+    PhoenixCartographieLib
+    ${toolchain_libs}
 )
