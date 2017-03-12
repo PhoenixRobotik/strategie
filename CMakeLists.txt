@@ -3,12 +3,11 @@
 ####################################################################
 cmake_minimum_required(VERSION 3.4 FATAL_ERROR)
 
-# Toolchain = architecture utilisée
-include("${CMAKE_CURRENT_SOURCE_DIR}/../toolchains/${ARCH}.cmake")
-
 project (PhoenixStrategie)
 set     (PhoenixStrategie_VERSION_MAJOR 0)
 set     (PhoenixStrategie_VERSION_MINOR 1)
+
+include(${GenericCmakeLists})
 
 ####################################################################
 #   Library modules
@@ -39,5 +38,5 @@ include_directories(
 target_link_libraries(${PROJECT_NAME}
     # la_super_librairieLib
     PhoenixCartographieLib
-    ${toolchain_libs}
+    ${Toolchain_LFlags}
 )
